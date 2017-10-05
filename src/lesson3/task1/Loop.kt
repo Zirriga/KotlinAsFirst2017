@@ -60,7 +60,17 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  * Найти количество цифр в заданном числе n.
  * Например, число 1 содержит 1 цифру, 456 -- 3 цифры, 65536 -- 5 цифр.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int): Int {
+    if (n==0) return 1
+    else{
+    var quantity = 0
+    var m=n
+    while (m>0){
+        quantity = quantity +1
+        m = m/10
+    }
+    return quantity
+}}
 
 /**
  * Простая
@@ -76,21 +86,42 @@ fun fib(n: Int): Int = TODO()
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int = TODO()
+fun lcm(m: Int, n: Int): Int  {
+        var k = 1
+        while ((k%n!=0)||(k%m!=0)){
+            k=k+1
+    }
+    return k
+}
 
 /**
  * Простая
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int = TODO()
+fun minDivisor(n: Int): Int {
+    var i = 2
+        while (n%i!=0){
+             i=i+1
+        }
+    return i
+    }
+
 
 /**
  * Простая
  *
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
-fun maxDivisor(n: Int): Int = TODO()
+fun maxDivisor(n: Int): Int {
+    var i = n-1
+    while ((n%i!=0)&&(i<n)){
+        i=i-1
+    }
+    return i
+}
+
+
 
 /**
  * Простая
@@ -99,7 +130,16 @@ fun maxDivisor(n: Int): Int = TODO()
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean = TODO()
+fun isCoPrime(m: Int, n: Int): Boolean {
+    var m1 = m
+    var n1 = n
+    while (m1!=n1) {
+        if (m1>n1) {m1=m1-n1 }
+        else {n1=n1-m1}
+    }
+    if (m1==1) return true
+    else return false
+}
 
 /**
  * Простая
@@ -109,7 +149,6 @@ fun isCoPrime(m: Int, n: Int): Boolean = TODO()
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
-
 /**
  * Средняя
  *
@@ -134,7 +173,15 @@ fun cos(x: Double, eps: Double): Double = TODO()
  * Поменять порядок цифр заданного числа n на обратный: 13478 -> 87431.
  * Не использовать строки при решении задачи.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int  {
+    var numb = 0
+    var nn = n
+    while (nn>0){
+        numb=numb*10+nn%10
+        nn=nn/10
+    }
+    return numb
+}
 
 /**
  * Средняя
@@ -143,7 +190,16 @@ fun revert(n: Int): Int = TODO()
  * первая цифра равна последней, вторая -- предпоследней и так далее.
  * 15751 -- палиндром, 3653 -- нет.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+fun isPalindrome(n: Int): Boolean {
+    var aa= n
+    var c= 0
+    while (aa>0){
+        c=c*10+(aa % 10)
+        aa=aa / 10
+    }
+    if (c==n) return true
+    else return false
+}
 
 /**
  * Средняя
@@ -151,7 +207,7 @@ fun isPalindrome(n: Int): Boolean = TODO()
  * Для заданного числа n определить, содержит ли оно различающиеся цифры.
  * Например, 54 и 323 состоят из разных цифр, а 111 и 0 из одинаковых.
  */
-fun hasDifferentDigits(n: Int): Boolean = TODO()
+fun hasDifferentDigits(n: Int): Boolean = TODO ()
 
 /**
  * Сложная
