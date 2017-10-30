@@ -62,7 +62,8 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = (hours * 3600) + (min
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  * сажени на 3, аршины на 48, вершки на 4,445, сложить, разделить на 100
  */
-fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = (sagenes * 48 + arshins * 16 + vershoks) * 0.04445
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double =
+        (sagenes * 48 + arshins * 16 + vershoks) * 0.04445
 
 /**
  * Тривиальная
@@ -80,7 +81,8 @@ fun angleInRadian(grad: Int, min: Int, sec: Int): Double = (grad * 3600 + min * 
  * Например, расстояние между (3, 0) и (0, 4) равно 5
  * ?
  */
-fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = sqrt( sqr( x2-x1) + sqr(y2-y1))
+fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double =
+        sqrt(sqr(x2 -x1) + sqr(y2-y1))
 
 /**
  * Простая
@@ -89,7 +91,8 @@ fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = sqrt( 
  * Определить третью цифру справа в этом числе (в данном случае 8).
  * див 100 мод 10 /-div %-mod
  */
-fun thirdDigit(number: Int): Int = (number / 100) % 10
+fun thirdDigit(number: Int): Int =
+        (number / 100) % 10
 
 /**
  * Простая
@@ -99,7 +102,8 @@ fun thirdDigit(number: Int): Int = (number / 100) % 10
  * Определите время поезда в пути в минутах (в данном случае 216).
  * перевевести в минуты, из второго вычитаем первое
  */
-fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int = ((hoursArrive * 60) + minutesArrive) - ((hoursDepart * 60) + minutesDepart)
+fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int =
+        ((hoursArrive * 60) + minutesArrive) - ((hoursDepart * 60) + minutesDepart)
 
 /**
  * Простая
@@ -109,7 +113,8 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
  * умножение на 1,1 в 3 стрепени
  */
-fun accountInThreeYears(initial: Int, percent: Int): Double = initial* (Math.pow(percent * 0.01 + 1 , 3.0))
+fun accountInThreeYears(initial: Int, percent: Int): Double =
+        initial * (Math.pow(percent * 0.01 + 1 , 3.0))
 
 /**
  * Простая
@@ -118,4 +123,5 @@ fun accountInThreeYears(initial: Int, percent: Int): Double = initial* (Math.pow
  *Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
  * само число в переменную А: А мод 10 * 100 + А див 10 мод 10 *10 + А див 100 (проверить) div(/)-целое, mod(%)-остаток
  */
-fun numberRevert(number: Int): Int = (number / 100 ) + (number / 10 % 10 *10) + (number %10 *100)
+fun numberRevert(number: Int): Int =
+        (number / 100) + (number / 10 % 10 *10) + (number %10 *100)
