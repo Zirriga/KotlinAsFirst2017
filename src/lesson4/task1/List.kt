@@ -266,7 +266,7 @@ fun factorizeToString(n: Int): String {
 fun convert(n: Int, base: Int): List<Int> {
     var result = mutableListOf<Int>()
     var n1 = n
-    while (n1 > base) {
+    while (n1 >= base) {
         result.add(0, (n1 % base))
         n1 /= base
     }
