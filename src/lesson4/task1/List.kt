@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson4.task1
 
 import lesson1.task1.discriminant
@@ -107,10 +108,10 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  * Модуль пустого вектора считать равным 0.0.
  */
 fun abs(v: List<Double>): Double {
-    var sum=0.0
+    var sum = 0.0
     for (element in v) {
-            sum+=element*element
-        }
+        sum += element * element
+    }
     return Math.sqrt(sum)
 }
 
@@ -120,13 +121,13 @@ fun abs(v: List<Double>): Double {
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
 fun mean(list: List<Double>): Double {
-    var sum=0.0
-    if (list.isEmpty()) sum=0.0
-    else{
+    var sum = 0.0
+    if (list.isEmpty()) sum = 0.0
+    else {
         for (element in list) {
-            sum+=element
+            sum += element
         }
-        sum=sum/(list.size)
+        sum /= (list.size)
     }
     return sum
 }
@@ -140,19 +141,16 @@ fun mean(list: List<Double>): Double {
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
 fun center(list: MutableList<Double>): MutableList<Double> {
-   //if (list.isEmpty()){ return list}
-   // else {
-        var sum = 0.0
-        var srar = 0.0
-        for (element in list) {
-            sum += element
-        }
-        srar = sum / (list.size)
-            for (i in 0 until list.size) {
-                list[i] -=srar
-            }
-   // }
-    return  list
+    var sum = 0.0
+    var srar = 0.0
+    for (element in list) {
+        sum += element
+    }
+    srar = sum / (list.size)
+    for (i in 0 until list.size) {
+        list[i] -= srar
+    }
+    return list
 }
 
 /**
@@ -163,9 +161,9 @@ fun center(list: MutableList<Double>): MutableList<Double> {
  * C = a1b1 + a2b2 + ... + aNbN. Произведение пустых векторов считать равным 0.0.
  */
 fun times(a: List<Double>, b: List<Double>): Double {
-    var c=0.0
+    var c = 0.0
     for (i in 0 until a.size) {
-            c+=a[i]*b[i]
+        c += a[i] * b[i]
     }
     return c
 }
@@ -181,7 +179,7 @@ fun times(a: List<Double>, b: List<Double>): Double {
 fun polynom(p: List<Double>, x: Double): Double {
     var mnog = 0.0
     for (i in 0 until p.size) {
-        mnog+=p[i]*Math.pow(x,i.toDouble())
+        mnog += p[i] * Math.pow(x, i.toDouble())
     }
     return mnog
 }
@@ -197,8 +195,8 @@ fun polynom(p: List<Double>, x: Double): Double {
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
 fun accumulate(list: MutableList<Double>): MutableList<Double> {
-    for ( i in 1 until  list.size){
-        list[i]+=list[i-1]
+    for (i in 1 until list.size) {
+        list[i] += list[i - 1]
     }
     return list
 }
@@ -212,15 +210,16 @@ fun accumulate(list: MutableList<Double>): MutableList<Double> {
  * Множители в списке должны располагаться по возрастанию.
  */
 fun factorize(n: Int): List<Int> {
-    var i =2
+    var i = 2
     var m = n
     val result = mutableListOf<Int>()
-    while (m>1){
-        if (m%i == 0) {
+    while (m > 1) {
+        if (m % i == 0) {
             result.add(i)
-            m=m/i
+            m /= i
+        } else {
+            i += 1
         }
-        else { i+=1}
     }
     return result
 }
@@ -232,22 +231,25 @@ fun factorize(n: Int): List<Int> {
  * Результат разложения вернуть в виде строки, например 75 -> 3*5*5
  */
 fun factorizeToString(n: Int): String {
-    var i =2
+    var i = 2
     var m = n
     val result = mutableListOf<Int>()
     var res = ""
-    while (m>1){
-        if (m%i == 0) {
+    while (m > 1) {
+        if (m % i == 0) {
             result.add(i)
-            m=m/i
+            m /= i
+        } else {
+            i += 1
         }
-        else { i+=1}
     }
 
-    if(result.size==1){res =i.toString()}
-    else {res=result[0].toString()
+    if (result.size == 1) {
+        res = i.toString()
+    } else {
+        res = result[0].toString()
         for (k in 1 until result.size) {
-            res += "*"+result[k].toString()
+            res += "*" + result[k].toString()
         }
     }
     return res
@@ -261,7 +263,16 @@ fun factorizeToString(n: Int): String {
  * Результат перевода вернуть в виде списка цифр в base-ичной системе от старшей к младшей,
  * например: n = 100, base = 4 -> (1, 2, 1, 0) или n = 250, base = 14 -> (1, 3, 12)
  */
-fun convert(n: Int, base: Int): List<Int> = TODO()
+fun convert(n: Int, base: Int): List<Int> {
+    var result = mutableListOf<Int>()
+    var n1 = n
+    while (n1 > base) {
+        result.add(0, (n1 % base))
+        n1 /= base
+    }
+    result.add(0, n1)
+    return result
+}
 
 /**
  * *********************************************************Сложная
@@ -271,7 +282,53 @@ fun convert(n: Int, base: Int): List<Int> = TODO()
  * строчными буквами: 10 -> a, 11 -> b, 12 -> c и так далее.
  * Например: n = 100, base = 4 -> 1210, n = 250, base = 14 -> 13c
  */
-fun convertToString(n: Int, base: Int): String = TODO()
+fun convertToString(n: Int, base: Int): String {
+    var list = convert(n, base)
+    var str = ""
+    var res = ""
+    for(i in 0 until list.size) {
+        when {
+            list[i] == 0 -> str = "0"
+            list[i] == 1 -> str = "1"
+            list[i] == 2 -> str = "2"
+            list[i] == 3 -> str = "3"
+            list[i] == 4 -> str = "4"
+            list[i] == 5 -> str = "5"
+            list[i] == 6 -> str = "6"
+            list[i] == 7 -> str = "7"
+            list[i] == 8 -> str = "8"
+            list[i] == 9 -> str = "9"
+            list[i] == 10 -> str = "a"
+            list[i] == 11 -> str = "b"
+            list[i] == 12 -> str = "c"
+            list[i] == 13 -> str = "d"
+            list[i] == 14 -> str = "e"
+            list[i] == 15 -> str = "f"
+            list[i] == 16 -> str = "g"
+            list[i] == 17 -> str = "h"
+            list[i] == 18 -> str = "i"
+            list[i] == 19 -> str = "j"
+            list[i] == 20 -> str = "k"
+            list[i] == 21 -> str = "l"
+            list[i] == 22 -> str = "m"
+            list[i] == 23 -> str = "n"
+            list[i] == 24 -> str = "o"
+            list[i] == 25 -> str = "p"
+            list[i] == 26 -> str = "q"
+            list[i] == 27 -> str = "r"
+            list[i] == 28 -> str = "s"
+            list[i] == 29 -> str = "t"
+            list[i] == 30 -> str = "u"
+            list[i] == 31 -> str = "v"
+            list[i] == 32 -> str = "w"
+            list[i] == 33 -> str = "x"
+            list[i] == 34 -> str = "y"
+            list[i] == 35 -> str = "z"
+        }
+        res += str
+    }
+    return res
+}
 
 /**
  * Средняя DONE
@@ -282,10 +339,10 @@ fun convertToString(n: Int, base: Int): String = TODO()
  */
 fun decimal(digits: List<Int>, base: Int): Int {
     var result = 0.0
-    var n=0.0
-    for (i in digits.size-1 downTo 0 ) {
-        result+=digits[i]*Math.pow(base.toDouble(),n)
-        n+=1
+    var n = 0.0
+    for (i in digits.size - 1 downTo 0) {
+        result += digits[i] * Math.pow(base.toDouble(), n)
+        n += 1
     }
     return result.toInt()
 }
@@ -299,25 +356,97 @@ fun decimal(digits: List<Int>, base: Int): Int {
  * 10 -> a, 11 -> b, 12 -> c и так далее.
  * Например: str = "13c", base = 14 -> 250
  */
-fun decimalFromString(str: String, base: Int): Int = TODO()
-    //for (i in 'a'..'z')
+
+fun decimalFromString(str: String, base: Int): Int {
+    var a = 0
+    var res = mutableListOf<Int>()
+    for(i in 0 until str.length){
+        when {
+                str[i] == '0' -> res.add(0)
+                str[i] == '1' -> res.add(1)
+                str[i] == '2' -> res.add(2)
+                str[i] == '3' -> res.add(3)
+                str[i] == '4' -> res.add(4)
+                str[i] == '5' -> res.add(5)
+                str[i] == '6' -> res.add(6)
+                str[i] == '7' -> res.add(7)
+                str[i] == '8' -> res.add(8)
+                str[i] == '9' -> res.add(9)
+                str[i] == 'a' -> res.add(10)
+                str[i] == 'b' -> res.add(11)
+                str[i] == 'c' -> res.add(12)
+                str[i] == 'd' -> res.add(13)
+                str[i] == 'e' -> res.add(14)
+                str[i] == 'f' -> res.add(15)
+                str[i] == 'g' -> res.add(16)
+                str[i] == 'h' -> res.add(17)
+                str[i] == 'i' -> res.add(18)
+                str[i] == 'j' -> res.add(19)
+                str[i] == 'k' -> res.add(20)
+                str[i] == 'l' -> res.add(21)
+                str[i] == 'm' -> res.add(22)
+                str[i] == 'n' -> res.add(23)
+                str[i] == 'o' -> res.add(24)
+                str[i] == 'p' -> res.add(25)
+                str[i] == 'q' -> res.add(26)
+                str[i] == 'r' -> res.add(27)
+                str[i] == 's' -> res.add(28)
+                str[i] == 't' -> res.add(29)
+                str[i] == 'u' -> res.add(30)
+                str[i] == 'v' -> res.add(31)
+                str[i] == 'w' -> res.add(32)
+                str[i] == 'x' -> res.add(33)
+                str[i] == 'y' -> res.add(34)
+                str[i] == 'z' -> res.add(35)
+        }
+    }
+    return decimal(res, base)
+}
 
 
 /**
- * ***************************************************Сложная
+ * Сложная DONE
  *
  * Перевести натуральное число n > 0 в римскую систему.
  * Римские цифры: 1 = I, 4 = IV, 5 = V, 9 = IX, 10 = X, 40 = XL, 50 = L,
  * 90 = XC, 100 = C, 400 = CD, 500 = D, 900 = CM, 1000 = M.
  * Например: 23 = XXIII, 44 = XLIV, 100 = C
  */
-fun roman(n: Int): String = TODO()
+fun roman(n: Int): String {
+    val R = listOf("I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M")
+    val A = listOf(1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000)
+    var n1 = n
+    var i = 12
+    var result = ""
+    while (n1 > 0) {
+        while (A[i] > n1) {
+            i--
+        }
+        result += R[i]
+        n1 -= A[i]
+    }
+    return result
+}
 
 /**
  * *********************************************Очень сложная
  *
- * Записать заданное натуральное число 1..999999 прописью по-русски.
+ * Записать заданное натуральное число 1..999 999 прописью по-русски.
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
+fun abc (n: Int): String {
+    return when{
+        n == 11 -> "одиннадцать"
+        n == 12 -> "двенадцать"
+        n == 13 -> "тринадцать"
+        n == 14 -> "четырнадцать"
+        n == 15 -> "пятнадцать"
+        n == 16 -> "шестнадцать"
+        n == 17 -> "семнадцать"
+        n == 18 -> "восемнадцать"
+        n == 19 -> "девятнадцать"
+        else -> "error"
+    }
+}
 fun russian(n: Int): String = TODO()

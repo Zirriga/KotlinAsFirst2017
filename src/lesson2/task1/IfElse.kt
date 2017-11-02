@@ -57,7 +57,8 @@ fun timeForHalfWay(t1: Double, v1: Double,
                    t3: Double, v3: Double): Double {
     when {
         (((t1 * v1 + t2 * v2 + t3 * v3) / 2 - (t1 * v1)) < 0) -> return ((t1 * v1 + t2 * v2 + t3 * v3) / (2 * v1))
-        (((t1 * v1 + t2 * v2 + t3 * v3) / 2 - t1 * v1 - t2 * v2) < 0) -> return (t1 + ((t1 * v1 + t2 * v2 + t3 * v3) / 2 - t1 * v1) / v2)
+        (((t1 * v1 + t2 * v2 + t3 * v3) / 2 - t1 * v1 - t2 * v2) < 0) ->
+            return (t1 + ((t1 * v1 + t2 * v2 + t3 * v3) / 2 - t1 * v1) / v2)
         else -> return (((t1 * v1 + t2 * v2 + t3 * v3) / 2 - t1 * v1 - t2 * v2) / v3 + t1 + t2)
     }
 }
@@ -116,7 +117,9 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
 fun triangleKind(a: Double, b: Double, c: Double): Int {
     when {
         ((a >= b + c) || (b >= a + c) || (c >= a + b)) -> return -1
-        ((a == Math.sqrt(b * b + c * c) || b == Math.sqrt(a * a + c * c) || c == Math.sqrt(b * b + a * a))) -> return 1
+        ((a == Math.sqrt(b * b + c * c) ||
+                b == Math.sqrt(a * a + c * c) ||
+                c == Math.sqrt(b * b + a * a))) -> return 1
         ((a * a + b * b > c * c) && (a * a + c * c > b * b) && (c * c + b * b > a * a)) -> return 0
         else -> return 2
     }
