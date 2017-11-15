@@ -1,5 +1,7 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson3.task1
+
 import java.lang.Math.pow
 
 /**
@@ -35,7 +37,7 @@ fun isPrime(n: Int): Boolean {
  */
 fun isPerfect(n: Int): Boolean {
     var sum = 1
-    for (m in 2..n/2) {
+    for (m in 2..n / 2) {
         if (n % m > 0) continue
         sum += m
         if (sum > n) break
@@ -63,15 +65,16 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  */
 fun digitNumber(n: Int): Int {
     if (n == 0) return 1
-    else{
-    var quantity = 0
-    var m = Math.abs(n)
-    while (m > 0){
-        quantity = quantity +1
-        m /= 10
+    else {
+        var quantity = 0
+        var m = Math.abs(n)
+        while (m > 0) {
+            quantity = quantity + 1
+            m /= 10
+        }
+        return quantity
     }
-    return quantity
-}}
+}
 
 /**
  * Простая DONE
@@ -102,15 +105,14 @@ fun fib(n: Int): Int {
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int  {
+fun lcm(m: Int, n: Int): Int {
     var nod = 1
     var m1 = m
     var n1 = n
-    while((m1 != 0)&&(n1 != 0)){
-        if (n1 > m1){
+    while ((m1 != 0) && (n1 != 0)) {
+        if (n1 > m1) {
             n1 %= m1
-        }
-        else {
+        } else {
             m1 %= n1
         }
         when {
@@ -118,7 +120,7 @@ fun lcm(m: Int, n: Int): Int  {
             (n1 != 0) -> nod = n1
         }
     }
-    return (m*n/nod)
+    return (m * n / nod)
 }
 
 /**
@@ -128,11 +130,11 @@ fun lcm(m: Int, n: Int): Int  {
  */
 fun minDivisor(n: Int): Int {
     var i = 2
-        while (n % i != 0){
-             i += 1
-        }
-    return i
+    while (n % i != 0) {
+        i += 1
     }
+    return i
+}
 
 
 /**
@@ -142,12 +144,11 @@ fun minDivisor(n: Int): Int {
  */
 fun maxDivisor(n: Int): Int {
     var i = n - 1
-    while ((n % i != 0)&&(i < n)){
+    while ((n % i != 0) && (i < n)) {
         i -= 1
     }
     return i
 }
-
 
 
 /**
@@ -161,8 +162,11 @@ fun isCoPrime(m: Int, n: Int): Boolean {
     var m1 = m
     var n1 = n
     while (m1 != n1) {
-        if (m1 > n1) {m1 -= n1}
-        else {n1 -= m1}
+        if (m1 > n1) {
+            m1 -= n1
+        } else {
+            n1 -= m1
+        }
     }
     return m1 == 1
 }
@@ -179,11 +183,11 @@ fun squareBetweenExists(m: Int, n: Int): Boolean {
     var a = m.toDouble()
     val b = n.toDouble()
     return if (n == m) {
-        if(Math.sqrt(a) % 1.0 == 0.0) true else result
+        if (Math.sqrt(a) % 1.0 == 0.0) true else result
     } else {
         while (a < b) {
             a += 1.0
-            if((Math.sqrt(a) % 1.0) == 0.0) {
+            if ((Math.sqrt(a) % 1.0) == 0.0) {
                 result = true
                 break
             }
@@ -191,6 +195,7 @@ fun squareBetweenExists(m: Int, n: Int): Boolean {
         result
     }
 }
+
 /**
  * Средняя DONE
  *
@@ -200,21 +205,22 @@ fun squareBetweenExists(m: Int, n: Int): Boolean {
  */
 fun sin(x: Double, eps: Double): Double {
     var m = x
-    while (Math.abs(m) > 2 * Math.PI){
+    while (Math.abs(m) > 2 * Math.PI) {
         if (m < 0) m += 2 * Math.PI
         else m -= 2 * Math.PI
     }
     var k = m
     var l = m
     var i = 0
-    while (Math.abs(l) >= eps){
+    while (Math.abs(l) >= eps) {
         i++
-        l = Math.pow(m,((2 * i) + 1).toDouble()) / factorial(2 * i + 1)
+        l = Math.pow(m, ((2 * i) + 1).toDouble()) / factorial(2 * i + 1)
         if (i % 2 == 1) k -= l
         else k += l
     }
     return k
 }
+
 /**
  * Средняя DONE
  *
@@ -227,29 +233,30 @@ fun cos(x: Double, eps: Double): Double {
     var n = m
     var k = x
     var i = 0
-    while (Math.abs(k) > 2 * Math.PI){
+    while (Math.abs(k) > 2 * Math.PI) {
         if (k < 0) k += 2 * Math.PI
         else k -= 2 * Math.PI
     }
-    while (Math.abs(n)>=eps){
+    while (Math.abs(n) >= eps) {
         i++
-        n = Math.pow(k, 2 * i.toDouble())/factorial(2 * i)
+        n = Math.pow(k, 2 * i.toDouble()) / factorial(2 * i)
         if (i % 2 == 1) m -= n
         else m += n
     }
     return m
 }
+
 /**
  * Средняя DONE
  *
  * Поменять порядок цифр заданного числа n на обратный: 13478 -> 87431.
  * Не использовать строки при решении задачи.
  */
-fun revert(n: Int): Int  {
+fun revert(n: Int): Int {
     var numb = 0
     var nn = n
-    while (nn > 0){
-        numb=(numb * 10 + nn % 10)
+    while (nn > 0) {
+        numb = (numb * 10 + nn % 10)
         nn /= 10
     }
     return numb
@@ -265,11 +272,11 @@ fun revert(n: Int): Int  {
 fun isPalindrome(n: Int): Boolean {
     var aa = n
     var c = 0
-    while (aa > 0){
+    while (aa > 0) {
         c = (c * 10 + (aa % 10))
         aa /= 10
     }
-    return (c==n)
+    return (c == n)
 }
 
 /**
@@ -286,7 +293,7 @@ fun hasDifferentDigits(n: Int): Boolean {
     while (copy > 0) {
         last = now
         now = copy % 10
-        if (now != last) count +=1
+        if (now != last) count += 1
         copy /= 10
     }
     return count != 0
@@ -303,7 +310,7 @@ fun squareSequenceDigit(n: Int): Int {
     var a = 0
     var b = 0
     var i = 1
-    while (b < n){
+    while (b < n) {
         a = i * i
         b += digitNumber(a)
         i++
@@ -314,8 +321,9 @@ fun squareSequenceDigit(n: Int): Int {
             a /= 10
         }
     }
-    return a%10
+    return a % 10
 }
+
 /**
  * Сложная DONE
  *
@@ -328,11 +336,11 @@ fun fibSequenceDigit(n: Int): Int {
     var ask = 0.0
     var i = 1
     var sq = 0
-    while (true){
+    while (true) {
         sq = fib(i)
         if (digitNumber(sq) < copy) {
             copy -= digitNumber(sq)
-        }else{
+        } else {
             val num = (digitNumber(sq) - copy).toDouble()
             var sqDob = sq.toDouble()
             sqDob /= pow(10.0, num)

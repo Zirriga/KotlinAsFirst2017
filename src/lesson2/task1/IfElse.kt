@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson2.task1
 
 import lesson1.task1.discriminant
@@ -43,8 +44,6 @@ fun ageDescription(age: Int): String {
 }
 
 
-
-
 /**
  * Простая
  *
@@ -79,7 +78,7 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
         (kingX != rookX1 && kingX != rookX2 && kingY != rookY1 && kingY != rookY2) -> return 0
         ((kingX == rookX1 && kingX == rookX2) ||
                 (kingX == rookX1 && kingY == rookY2) ||
-                (kingY == rookY1 && kingY == rookY2) || (kingY == rookY1 && kingX == rookX2)) ->return 3
+                (kingY == rookY1 && kingY == rookY2) || (kingY == rookY1 && kingX == rookX2)) -> return 3
         ((kingX == rookX1 || kingY == rookY1)) -> return 1
         else -> return 2
     }
@@ -124,7 +123,8 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
         else -> return 2
     }
 }
-    /**
+
+/**
  * Средняя
  *
  * Даны четыре точки на одной прямой: A, B, C и D.
@@ -133,11 +133,11 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
  * Если пересечения нет, вернуть -1.
  */
 fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
-        when {
-            (c > b || d < a) -> return -1
-            (c <= a && d >= b) -> return b - a
-            (c >= a && d <= b) -> return d - c
-            (c >= a && c <= b && b <= d) -> return b - c
-            else -> return d - a
-        }
+    when {
+        (c > b || d < a) -> return -1
+        (c <= a && d >= b) -> return b - a
+        (c >= a && d <= b) -> return d - c
+        (c >= a && c <= b && b <= d) -> return b - c
+        else -> return d - a
     }
+}

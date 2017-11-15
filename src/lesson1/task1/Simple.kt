@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson1.task1
 
 import java.lang.Math.*
@@ -72,7 +73,7 @@ fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double =
  * Вывести значение того же угла в радианах (например, 0.63256).
  * градус на 0,01745, минуты на 0,00029, секунды на 0,000005, сложить
  */
-fun angleInRadian(grad: Int, min: Int, sec: Int): Double = (grad * 3600 + min * 60 + sec)* Math.PI/648000
+fun angleInRadian(grad: Int, min: Int, sec: Int): Double = (grad * 3600 + min * 60 + sec) * Math.PI / 648000
 
 /**
  * Тривиальная
@@ -82,7 +83,7 @@ fun angleInRadian(grad: Int, min: Int, sec: Int): Double = (grad * 3600 + min * 
  * ?
  */
 fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double =
-        sqrt(sqr(x2 -x1) + sqr(y2-y1))
+        sqrt(sqr(x2 - x1) + sqr(y2 - y1))
 
 /**
  * Простая
@@ -114,7 +115,7 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  * умножение на 1,1 в 3 стрепени
  */
 fun accountInThreeYears(initial: Int, percent: Int): Double =
-        initial * (Math.pow(percent * 0.01 + 1 , 3.0))
+        initial * (Math.pow(percent * 0.01 + 1, 3.0))
 
 /**
  * Простая
@@ -124,4 +125,4 @@ fun accountInThreeYears(initial: Int, percent: Int): Double =
  * само число в переменную А: А мод 10 * 100 + А див 10 мод 10 *10 + А див 100 (проверить) div(/)-целое, mod(%)-остаток
  */
 fun numberRevert(number: Int): Int =
-        (number / 100) + (number / 10 % 10 *10) + (number %10 *100)
+        (number / 100) + (number / 10 % 10 * 10) + (number % 10 * 100)

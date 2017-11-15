@@ -286,7 +286,7 @@ fun convertToString(n: Int, base: Int): String {
     var list = convert(n, base)
     var str = ""
     var res = ""
-    for(i in 0 until list.size) {
+    for (i in 0 until list.size) {
         when {
             list[i] == 0 -> str = "0"
             list[i] == 1 -> str = "1"
@@ -360,44 +360,44 @@ fun decimal(digits: List<Int>, base: Int): Int {
 fun decimalFromString(str: String, base: Int): Int {
     var a = 0
     var res = mutableListOf<Int>()
-    for(i in 0 until str.length){
+    for (i in 0 until str.length) {
         when {
-                str[i] == '0' -> res.add(0)
-                str[i] == '1' -> res.add(1)
-                str[i] == '2' -> res.add(2)
-                str[i] == '3' -> res.add(3)
-                str[i] == '4' -> res.add(4)
-                str[i] == '5' -> res.add(5)
-                str[i] == '6' -> res.add(6)
-                str[i] == '7' -> res.add(7)
-                str[i] == '8' -> res.add(8)
-                str[i] == '9' -> res.add(9)
-                str[i] == 'a' -> res.add(10)
-                str[i] == 'b' -> res.add(11)
-                str[i] == 'c' -> res.add(12)
-                str[i] == 'd' -> res.add(13)
-                str[i] == 'e' -> res.add(14)
-                str[i] == 'f' -> res.add(15)
-                str[i] == 'g' -> res.add(16)
-                str[i] == 'h' -> res.add(17)
-                str[i] == 'i' -> res.add(18)
-                str[i] == 'j' -> res.add(19)
-                str[i] == 'k' -> res.add(20)
-                str[i] == 'l' -> res.add(21)
-                str[i] == 'm' -> res.add(22)
-                str[i] == 'n' -> res.add(23)
-                str[i] == 'o' -> res.add(24)
-                str[i] == 'p' -> res.add(25)
-                str[i] == 'q' -> res.add(26)
-                str[i] == 'r' -> res.add(27)
-                str[i] == 's' -> res.add(28)
-                str[i] == 't' -> res.add(29)
-                str[i] == 'u' -> res.add(30)
-                str[i] == 'v' -> res.add(31)
-                str[i] == 'w' -> res.add(32)
-                str[i] == 'x' -> res.add(33)
-                str[i] == 'y' -> res.add(34)
-                str[i] == 'z' -> res.add(35)
+            str[i] == '0' -> res.add(0)
+            str[i] == '1' -> res.add(1)
+            str[i] == '2' -> res.add(2)
+            str[i] == '3' -> res.add(3)
+            str[i] == '4' -> res.add(4)
+            str[i] == '5' -> res.add(5)
+            str[i] == '6' -> res.add(6)
+            str[i] == '7' -> res.add(7)
+            str[i] == '8' -> res.add(8)
+            str[i] == '9' -> res.add(9)
+            str[i] == 'a' -> res.add(10)
+            str[i] == 'b' -> res.add(11)
+            str[i] == 'c' -> res.add(12)
+            str[i] == 'd' -> res.add(13)
+            str[i] == 'e' -> res.add(14)
+            str[i] == 'f' -> res.add(15)
+            str[i] == 'g' -> res.add(16)
+            str[i] == 'h' -> res.add(17)
+            str[i] == 'i' -> res.add(18)
+            str[i] == 'j' -> res.add(19)
+            str[i] == 'k' -> res.add(20)
+            str[i] == 'l' -> res.add(21)
+            str[i] == 'm' -> res.add(22)
+            str[i] == 'n' -> res.add(23)
+            str[i] == 'o' -> res.add(24)
+            str[i] == 'p' -> res.add(25)
+            str[i] == 'q' -> res.add(26)
+            str[i] == 'r' -> res.add(27)
+            str[i] == 's' -> res.add(28)
+            str[i] == 't' -> res.add(29)
+            str[i] == 'u' -> res.add(30)
+            str[i] == 'v' -> res.add(31)
+            str[i] == 'w' -> res.add(32)
+            str[i] == 'x' -> res.add(33)
+            str[i] == 'y' -> res.add(34)
+            str[i] == 'z' -> res.add(35)
         }
     }
     return decimal(res, base)
@@ -435,8 +435,8 @@ fun roman(n: Int): String {
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
-fun abc (n: Int): String {
-    return when{
+fun abc(n: Int): String {
+    return when {
         n == 11 -> "одиннадцать"
         n == 12 -> "двенадцать"
         n == 13 -> "тринадцать"
@@ -449,4 +449,5 @@ fun abc (n: Int): String {
         else -> "error"
     }
 }
+
 fun russian(n: Int): String = TODO()
