@@ -64,8 +64,38 @@ fun main(args: Array<String>) {
  * Перевести её в цифровой формат "15.07.2016".
  * День и месяц всегда представлять двумя цифрами, например: 03.04.2011.
  * При неверном формате входной строки вернуть пустую строку
+ *
+ * заменить конструкцию на when
+ * есть ли более красивые варианты решений?
  */
-fun dateStrToDigit(str: String): String = TODO()
+val month = listOf<String>(
+        "января",
+        "февраля",
+        "марта",
+        "апреля",
+        "мая",
+        "июня",
+        "июля",
+        "августа",
+        "сентября",
+        "октября",
+        "ноября",
+        "декабря")
+
+fun dateStrToDigit(str: String): String {
+    try {
+        val regex = """(\d{1,2}) ([а-я]{3,8}) \d+""".toRegex()
+        if (!str.matches(regex))
+            return ""
+        val list = str.split(" ")
+        if (list[1] in month)
+            return String.format("%02d.%02d.%d", list[0].toInt(), month.indexOf(list[1]) + 1, list[2].toInt())
+        else
+            return ""
+    } catch (e: Exception) {
+        return ""
+    }
+}
 
 /**
  * Средняя
@@ -74,7 +104,18 @@ fun dateStrToDigit(str: String): String = TODO()
  * Перевести её в строковый формат вида "15 июля 2016".
  * При неверном формате входной строки вернуть пустую строку
  */
-fun dateDigitToStr(digital: String): String = TODO()
+
+fun dateDigitToStr(digital: String): String {
+    try {
+        val regex = """\d\d.\d\d.(\d+)""".toRegex()
+        if (!digital.matches(regex))
+            return ""
+        val list = digital.split(".")
+        return String.format("%d %s %d", list[0].toInt(), month[list[1].toInt() - 1], list[2].toInt())
+    } catch (e: Exception) {
+        return ""
+    }
+}
 
 /**
  * Средняя
@@ -88,7 +129,13 @@ fun dateDigitToStr(digital: String): String = TODO()
  * Все символы в номере, кроме цифр, пробелов и +-(), считать недопустимыми.
  * При неверном формате вернуть пустую строку
  */
-fun flattenPhoneNumber(phone: String): String = TODO()
+fun flattenPhoneNumber(phone: String): String {
+    val regex = """\+?[\d\s\(\)-]*""".toRegex()
+    if (!phone.matches(regex) || !phone.contains("\\d+".toRegex()))
+        return ""
+    val list = phone.split(" ", "(", ")", "-")
+    return list.joinToString("")
+}
 
 /**
  * Средняя
@@ -100,7 +147,22 @@ fun flattenPhoneNumber(phone: String): String = TODO()
  * Прочитать строку и вернуть максимальное присутствующее в ней число (717 в примере).
  * При нарушении формата входной строки или при отсутствии в ней чисел, вернуть -1.
  */
-fun bestLongJump(jumps: String): Int = TODO()
+fun bestLongJump(jumps: String): Int {
+    val regex1 = """[-%0-9 ]*""".toRegex()
+    val regex2 = """\d+""".toRegex()
+    try {
+        if ((!jumps.matches(regex1)) || (!jumps.contains(regex2)))
+            return -1
+        val attempts = jumps.split(" ").toMutableList()
+        var max = -1
+        for (attempt in attempts)
+            if ((attempt.matches(regex2)) && (attempt.toInt() > max))
+                max = attempt.toInt()
+        return max
+    } catch (e: Exception) {
+        return -1
+    }
+}
 
 /**
  * Сложная
@@ -112,10 +174,27 @@ fun bestLongJump(jumps: String): Int = TODO()
  * Прочитать строку и вернуть максимальную взятую высоту (230 в примере).
  * При нарушении формата входной строки вернуть -1.
  */
-fun bestHighJump(jumps: String): Int = TODO()
+fun bestHighJump(jumps: String): Int {
+    val regex1 = """\d+""".toRegex()
+    val regex2 = """[-+%0-9 ]*""".toRegex()
+    val attempts = jumps.split(" ")
+    var temp = -1
+    try {
+        if (!jumps.matches(regex2) || !jumps.contains(regex1))
+            return -1
+        for (i in 0 until attempts.size step 2) {
+            var element = attempts[i]
+            if (element.matches(regex1) && element.toInt() > temp && attempts[i + 1].contains("""\+""".toRegex()))
+                temp = element.toInt()
+        }
+    } catch (e: Exception) {
+        return -1
+    }
+    return temp
+}
 
 /**
- * Сложная
+ * Сложная КЫК КОКОК
  *
  * В строке представлено выражение вида "2 + 31 - 40 + 13",
  * использующее целые положительные числа, плюсы и минусы, разделённые пробелами.
@@ -123,7 +202,22 @@ fun bestHighJump(jumps: String): Int = TODO()
  * Вернуть значение выражения (6 для примера).
  * Про нарушении формата входной строки бросить исключение IllegalArgumentException
  */
-fun plusMinus(expression: String): Int = TODO()
+fun plusMinus(expression: String): Int {
+    var result = 0
+    val parts = expression.split(" ")
+    val regex = """[\d+(\s[+-])?]+""".toRegex()
+    if (!expression.matches(regex))
+        throw IllegalArgumentException()
+    result = parts[0].toInt()
+    for (i in 2 until parts.size step 2) { // in2 поставить, чтобы не вылететь за границы. потереть комментарии
+        if (parts[i - 1] == "-") {
+            result -= parts[i].toInt()
+        } else if (parts[i - 1] == "+") {
+            result += parts[i].toInt()
+        } else throw IllegalArgumentException() // можно сделать when вместо конструкции else if
+    }
+    return result
+}
 
 /**
  * Сложная
@@ -134,7 +228,20 @@ fun plusMinus(expression: String): Int = TODO()
  * Вернуть индекс начала первого повторяющегося слова, или -1, если повторов нет.
  * Пример: "Он пошёл в в школу" => результат 9 (индекс первого 'в')
  */
-fun firstDuplicateIndex(str: String): Int = TODO()
+fun firstDuplicateIndex(str: String): Int {
+    var result = -1
+    val name = str.toLowerCase().split(" ")
+    val list = mutableListOf<Int>(0)
+    for (i in 1 until str.length) {
+        if (str[i] == ' ') list.add(i + 1)
+    }
+    for (i in name.size - 1 downTo 1) {
+        if (name[i] == name[i - 1]) {
+            result = list[i - 1]
+        }
+    }
+    return result
+}
 
 /**
  * Сложная
@@ -146,6 +253,8 @@ fun firstDuplicateIndex(str: String): Int = TODO()
  * Вернуть название самого дорогого товара в списке (в примере это Курица),
  * или пустую строку при нарушении формата строки.
  * Все цены должны быть положительными
+ *
+ * как разраничить и поймать все символы ошибок? а если там стоит слово "абырвалг", после просто точко и запятой...
  */
 fun mostExpensive(description: String): String = TODO()
 
@@ -160,7 +269,26 @@ fun mostExpensive(description: String): String = TODO()
  *
  * Вернуть -1, если roman не является корректным римским числом
  */
-fun fromRoman(roman: String): Int = TODO()
+fun fromRoman(roman: String): Int {
+    val R = listOf('I', 'V', 'X', 'L', 'C', 'D', 'M')
+    val D = listOf(1, 5, 10, 50, 100, 500, 1000)
+    val regex1 = """[IVXLCDM]+""".toRegex()
+    if (!roman.matches(regex1))
+        return -1
+    var sum = 0
+    var i = roman.length - 1
+    var ind = 0
+    while (i >= 0) {
+        ind = D[R.indexOf(roman[i])]
+        while ((i >= 1) && (R.indexOf(roman[i - 1]) < R.indexOf(roman[i]))) {
+            ind -= D[R.indexOf(roman[i - 1])]
+            i--
+        }
+        sum += ind
+        i--
+    }
+    return sum
+}
 
 /**
  * Очень сложная
