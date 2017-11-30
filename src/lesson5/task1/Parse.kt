@@ -153,7 +153,7 @@ fun bestLongJump(jumps: String): Int {
     try {
         if ((!jumps.matches(regex1)) || (!jumps.contains(regex2)))
             return -1
-        val attempts = jumps.split(" ").toMutableList()
+        val attempts = jumps.split(" ").toList()
         var max = -1
         for (attempt in attempts)
             if ((attempt.matches(regex2)) && (attempt.toInt() > max))

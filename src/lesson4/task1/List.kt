@@ -287,43 +287,43 @@ fun convertToString(n: Int, base: Int): String {
     var str = ""
     var res = ""
     for (i in 0 until list.size) {
-        when {
-            list[i] == 0 -> str = "0"
-            list[i] == 1 -> str = "1"
-            list[i] == 2 -> str = "2"
-            list[i] == 3 -> str = "3"
-            list[i] == 4 -> str = "4"
-            list[i] == 5 -> str = "5"
-            list[i] == 6 -> str = "6"
-            list[i] == 7 -> str = "7"
-            list[i] == 8 -> str = "8"
-            list[i] == 9 -> str = "9"
-            list[i] == 10 -> str = "a"
-            list[i] == 11 -> str = "b"
-            list[i] == 12 -> str = "c"
-            list[i] == 13 -> str = "d"
-            list[i] == 14 -> str = "e"
-            list[i] == 15 -> str = "f"
-            list[i] == 16 -> str = "g"
-            list[i] == 17 -> str = "h"
-            list[i] == 18 -> str = "i"
-            list[i] == 19 -> str = "j"
-            list[i] == 20 -> str = "k"
-            list[i] == 21 -> str = "l"
-            list[i] == 22 -> str = "m"
-            list[i] == 23 -> str = "n"
-            list[i] == 24 -> str = "o"
-            list[i] == 25 -> str = "p"
-            list[i] == 26 -> str = "q"
-            list[i] == 27 -> str = "r"
-            list[i] == 28 -> str = "s"
-            list[i] == 29 -> str = "t"
-            list[i] == 30 -> str = "u"
-            list[i] == 31 -> str = "v"
-            list[i] == 32 -> str = "w"
-            list[i] == 33 -> str = "x"
-            list[i] == 34 -> str = "y"
-            list[i] == 35 -> str = "z"
+        when (list[i]) {
+            0 -> str = "0"
+            1 -> str = "1"
+            2 -> str = "2"
+            3 -> str = "3"
+            4 -> str = "4"
+            5 -> str = "5"
+            6 -> str = "6"
+            7 -> str = "7"
+            8 -> str = "8"
+            9 -> str = "9"
+            10 -> str = "a"
+            11 -> str = "b"
+            12 -> str = "c"
+            13 -> str = "d"
+            14 -> str = "e"
+            15 -> str = "f"
+            16 -> str = "g"
+            17 -> str = "h"
+            18 -> str = "i"
+            19 -> str = "j"
+            20 -> str = "k"
+            21 -> str = "l"
+            22 -> str = "m"
+            23 -> str = "n"
+            24 -> str = "o"
+            25 -> str = "p"
+            26 -> str = "q"
+            27 -> str = "r"
+            28 -> str = "s"
+            29 -> str = "t"
+            30 -> str = "u"
+            31 -> str = "v"
+            32 -> str = "w"
+            33 -> str = "x"
+            34 -> str = "y"
+            35 -> str = "z"
         }
         res += str
     }
@@ -361,43 +361,43 @@ fun decimalFromString(str: String, base: Int): Int {
     var a = 0
     var res = mutableListOf<Int>()
     for (i in 0 until str.length) {
-        when {
-            str[i] == '0' -> res.add(0)
-            str[i] == '1' -> res.add(1)
-            str[i] == '2' -> res.add(2)
-            str[i] == '3' -> res.add(3)
-            str[i] == '4' -> res.add(4)
-            str[i] == '5' -> res.add(5)
-            str[i] == '6' -> res.add(6)
-            str[i] == '7' -> res.add(7)
-            str[i] == '8' -> res.add(8)
-            str[i] == '9' -> res.add(9)
-            str[i] == 'a' -> res.add(10)
-            str[i] == 'b' -> res.add(11)
-            str[i] == 'c' -> res.add(12)
-            str[i] == 'd' -> res.add(13)
-            str[i] == 'e' -> res.add(14)
-            str[i] == 'f' -> res.add(15)
-            str[i] == 'g' -> res.add(16)
-            str[i] == 'h' -> res.add(17)
-            str[i] == 'i' -> res.add(18)
-            str[i] == 'j' -> res.add(19)
-            str[i] == 'k' -> res.add(20)
-            str[i] == 'l' -> res.add(21)
-            str[i] == 'm' -> res.add(22)
-            str[i] == 'n' -> res.add(23)
-            str[i] == 'o' -> res.add(24)
-            str[i] == 'p' -> res.add(25)
-            str[i] == 'q' -> res.add(26)
-            str[i] == 'r' -> res.add(27)
-            str[i] == 's' -> res.add(28)
-            str[i] == 't' -> res.add(29)
-            str[i] == 'u' -> res.add(30)
-            str[i] == 'v' -> res.add(31)
-            str[i] == 'w' -> res.add(32)
-            str[i] == 'x' -> res.add(33)
-            str[i] == 'y' -> res.add(34)
-            str[i] == 'z' -> res.add(35)
+        when (str[i]) {
+            '0' -> res.add(0)
+            '1' -> res.add(1)
+            '2' -> res.add(2)
+            '3' -> res.add(3)
+            '4' -> res.add(4)
+            '5' -> res.add(5)
+            '6' -> res.add(6)
+            '7' -> res.add(7)
+            '8' -> res.add(8)
+            '9' -> res.add(9)
+            'a' -> res.add(10)
+            'b' -> res.add(11)
+            'c' -> res.add(12)
+            'd' -> res.add(13)
+            'e' -> res.add(14)
+            'f' -> res.add(15)
+            'g' -> res.add(16)
+            'h' -> res.add(17)
+            'i' -> res.add(18)
+            'j' -> res.add(19)
+            'k' -> res.add(20)
+            'l' -> res.add(21)
+            'm' -> res.add(22)
+            'n' -> res.add(23)
+            'o' -> res.add(24)
+            'p' -> res.add(25)
+            'q' -> res.add(26)
+            'r' -> res.add(27)
+            's' -> res.add(28)
+            't' -> res.add(29)
+            'u' -> res.add(30)
+            'v' -> res.add(31)
+            'w' -> res.add(32)
+            'x' -> res.add(33)
+            'y' -> res.add(34)
+            'z' -> res.add(35)
         }
     }
     return decimal(res, base)
@@ -436,16 +436,16 @@ fun roman(n: Int): String {
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
 fun abc(n: Int): String {
-    return when {
-        n == 11 -> "одиннадцать"
-        n == 12 -> "двенадцать"
-        n == 13 -> "тринадцать"
-        n == 14 -> "четырнадцать"
-        n == 15 -> "пятнадцать"
-        n == 16 -> "шестнадцать"
-        n == 17 -> "семнадцать"
-        n == 18 -> "восемнадцать"
-        n == 19 -> "девятнадцать"
+    return when (n) {
+        11 -> "одиннадцать"
+        12 -> "двенадцать"
+        13 -> "тринадцать"
+        14 -> "четырнадцать"
+        15 -> "пятнадцать"
+        16 -> "шестнадцать"
+        17 -> "семнадцать"
+        18 -> "восемнадцать"
+        19 -> "девятнадцать"
         else -> "error"
     }
 }
