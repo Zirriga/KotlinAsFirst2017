@@ -413,17 +413,17 @@ fun decimalFromString(str: String, base: Int): Int {
  * Например: 23 = XXIII, 44 = XLIV, 100 = C
  */
 fun roman(n: Int): String {
-    val R = listOf("I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M")
-    val A = listOf(1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000)
+    val rome = listOf("I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M")
+    val aa = listOf(1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000)
     var n1 = n
     var i = 12
     var result = ""
     while (n1 > 0) {
-        while (A[i] > n1) {
+        while (aa[i] > n1) {
             i--
         }
-        result += R[i]
-        n1 -= A[i]
+        result += rome[i]
+        n1 -= aa[i]
     }
     return result
 }
