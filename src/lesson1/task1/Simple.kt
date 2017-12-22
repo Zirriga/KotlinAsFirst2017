@@ -126,3 +126,28 @@ fun accountInThreeYears(initial: Int, percent: Int): Double =
  */
 fun numberRevert(number: Int): Int =
         (number / 100) + (number / 10 % 10 * 10) + (number % 10 * 100)
+
+
+fun myFun(goods: String): List<String> {
+    val result = mutableListOf<String>()
+    val reg = Regex("""А-Яа-я0-9; """)
+    //if (!goods.contains(reg)) throw IllegalArgumentException()
+    val listofgoods = goods.split("; ") //список товаров с кодами
+    var listofcodes = listOf<String>()
+    var code = "0"
+    for (i in 0 until listofgoods.size) { //"отрываем" коды от товаров
+        listofcodes = listofgoods[i].split(" ") //список кодов элементов
+        listofcodes.drop(i + 1) //убрали название товара, оставив лишь код
+    }
+    for (i in 0 until listofgoods.size) {
+        code = listofcodes[i]
+        for (j in listofgoods.size - 1 downTo 1) {
+            if ((code == listofcodes[j])) {
+                result.add(listofgoods[i])
+            }
+        }
+    }
+    if (result.isNotEmpty()) {
+        return result
+    } else return listOf("Нет конфликтующих товаров")
+}

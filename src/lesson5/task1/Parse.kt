@@ -270,8 +270,8 @@ fun mostExpensive(description: String): String = TODO()
  * Вернуть -1, если roman не является корректным римским числом
  */
 fun fromRoman(roman: String): Int {
-    val R = listOf('I', 'V', 'X', 'L', 'C', 'D', 'M')
-    val D = listOf(1, 5, 10, 50, 100, 500, 1000)
+    val rome = listOf('I', 'V', 'X', 'L', 'C', 'D', 'M')
+    val de = listOf(1, 5, 10, 50, 100, 500, 1000)
     val regex1 = """[IVXLCDM]+""".toRegex()
     if (!roman.matches(regex1))
         return -1
@@ -279,9 +279,9 @@ fun fromRoman(roman: String): Int {
     var i = roman.length - 1
     var ind = 0
     while (i >= 0) {
-        ind = D[R.indexOf(roman[i])]
-        while ((i >= 1) && (R.indexOf(roman[i - 1]) < R.indexOf(roman[i]))) {
-            ind -= D[R.indexOf(roman[i - 1])]
+        ind = de[rome.indexOf(roman[i])]
+        while ((i >= 1) && (rome.indexOf(roman[i - 1]) < rome.indexOf(roman[i]))) {
+            ind -= de[rome.indexOf(roman[i - 1])]
             i--
         }
         sum += ind

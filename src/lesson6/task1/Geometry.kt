@@ -174,18 +174,9 @@ class Line private constructor(val b: Double, val angle: Double) {
  * Построить прямую по отрезку
  */
 fun lineBySegment(s: Segment): Line {
-    val angle: Double
-    when {
-        s.begin.x == s.end.x -> angle = Math.PI / 2
-        s.begin.y == s.end.y -> angle = 0.0
-        else -> {
-            val c = Point(s.end.x, s.begin.y)
-            angle = if ((s.begin.x < s.end.x) && (s.begin.y < s.end.y) ||
-                    (s.begin.x > s.end.x) && (s.begin.y < s.end.y))
-                Math.asin((s.end.distance(c)) / (s.begin.distance(s.end)))
-            else Math.PI - Math.asin((s.end.distance(c)) / (s.begin.distance(s.end)))
-        }
-    }
+    val dx = s.end.x - s.begin.x
+    val dy = s.end.y - s.begin.y
+    val angle = (Math.atan2(dy, dx) + Math.PI) % Math.PI
     return Line(s.begin, angle)
 }
 
@@ -202,11 +193,12 @@ fun lineByPoints(a: Point, b: Point): Line = lineBySegment(Segment(a, b))
  * Построить серединный перпендикуляр по отрезку или по двум точкам
  */
 fun bisectorByPoints(a: Point, b: Point): Line {
-    val center = Point((a.x + b.x) / 2, (a.y + b.y) / 2)
-    val line = lineByPoints(a, b)
-    when { (line.angle >= Math.PI / 2) -> return Line(center, line.angle - Math.PI / 2)
-        else -> return Line(center, line.angle + Math.PI / 2)
-    }
+    val dx = b.x - a.x
+    val dy = b.y - a.y
+    val middle = Point(a.x + dx / 2.0, a.y + dy / 2.0)
+    val midNorBegin = Point(middle.x - dy, middle.y + dx)
+    val midNorEnd = Point(middle.x + dy, middle.y - dx)
+    return lineByPoints(midNorBegin, midNorEnd)
 }
 
 /**
@@ -226,7 +218,7 @@ fun findNearestCirclePair(vararg circles: Circle): Pair<Circle, Circle> {
 }
 
 /**
- * Сложная
+ * Сложная ПОЧ НЕ РОБИТ
  *
  * Дано три различные точки. Построить окружность, проходящую через них
  * (все три точки должны лежать НА, а не ВНУТРИ, окружности).
@@ -234,8 +226,16 @@ fun findNearestCirclePair(vararg circles: Circle): Pair<Circle, Circle> {
  * (построить окружность по трём точкам, или
  * построить окружность, описанную вокруг треугольника - эквивалентная задача).
  *
+ * нужно построить срединный перпендикуляр к АС, перпендикуляр к AB. их пересечение = центр окружности
+ *
  */
-fun circleByThreePoints(a: Point, b: Point, c: Point): Circle = TODO()
+fun circleByThreePoints(a: Point, b: Point, c: Point): Circle {
+    val ac = bisectorByPoints(a, c)
+    val ab = bisectorByPoints(a, b)
+    val center = ac.crossPoint(ab)
+    val radius = center.distance(a)
+    return Circle(center, radius)
+}
 
 /**
  * Очень сложная

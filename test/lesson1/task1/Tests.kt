@@ -95,4 +95,12 @@ class Tests {
         assertEquals(874, numberRevert(478))
         assertEquals(201, numberRevert(102))
     }
+
+    @Test
+    @Tag("EXAM")
+    fun myFun() {
+        assertEquals(listOf<String>("Нет конфликтующих товаров"), myFun("1 лол; 2 кек; 3 чебурек"))
+        assertEquals(listOf<String>("144 молоко", "144 табак"), myFun(("144 молоко; 144 табак; 80 кефир; 228 мяч")))
+        assertEquals(listOf<String>("22 хлеб", "22 мандарин"), myFun("27 лол; 22 хлеб; 1 кек; 22 мандарин"))
+    }
 }
